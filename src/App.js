@@ -12,6 +12,7 @@ function App() {
   const [focusedDay, setFocusedDay] = useState(moment().format('MMMM Do YYYY'));
   const [focusedMoment, setFocusedMoment] = useState(moment());
   const [foodNameToAdd, setFoodNameToAdd] = useState("");
+  const [caloriesToAdd, setCaloriesToAdd] = useState(-1);
   return (
     <div className="App">
       <h1> Welcome to the Calorie Tracker </h1>
@@ -20,19 +21,26 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
-      <Container maxWidth='sm'>
-        <Stack spacing={5} direction="row"> 
-          <Button variant="outlined" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Previous Day</Button>
+      <Container maxWidth='lg'>
+        <Stack spacing={8} direction="row"> 
+          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY')); console.log('e')}}>Previous Day</Button>
           <FoodList focusedDay = {focusedDay}/>
-          <Button variant="outlined" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Next Day</Button>
+          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Next Day</Button>
         </Stack>
         <br></br>
         <br></br>
         <br></br>
-        <TextField id="outlined-basic" label="Food Name" variant="outlined" onChange={(e) => {
+        <Stack spacing={5} direction="row">
+        <TextField id="food-name" label="Food Name" variant="outlined" onChange={(e) => {
           setFoodNameToAdd(e.target.value);
         }} />
+        <TextField id="calories" label="Calories" variant="outlined" onChange={(e) => {
+          setCaloriesToAdd(e.target.value); console.log(caloriesToAdd);
+        }} />
+        <Button variant="outlined"> Add Food </Button>
+         </Stack>
         <p>{foodNameToAdd}</p>
+        <p>{caloriesToAdd}</p>
        
       </Container>
       
