@@ -7,7 +7,9 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
 function App() {
-  const [focusedDay, setFocusedDay] = useState(moment());
+
+  const [focusedDay, setFocusedDay] = useState(moment().format('MMMM Do YYYY'));
+  const [focusedMoment, setFocusedMoment] = useState(moment());
   return (
     <div className="App">
       <h1> Welcome to the Calorie Tracker </h1>
@@ -18,9 +20,9 @@ function App() {
       <br></br>
       <Container maxWidth='sm'>
         <Stack spacing={5} direction="row"> 
-          <Button variant="outlined">Previous Day</Button>
+          <Button variant="outlined" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Previous Day</Button>
           <FoodList focusedDay = {focusedDay}/>
-          <Button variant="outlined">Next Day</Button>
+          <Button variant="outlined" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Next Day</Button>
         </Stack>
       </Container>
       
