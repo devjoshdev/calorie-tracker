@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import FoodList from './components/FoodList';
+import moment from 'moment';
+import {useState} from 'react';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
 function App() {
+  const [focusedDay, setFocusedDay] = useState(moment());
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Welcome to the Calorie Tracker </h1>
+      <h2> By Joshy </h2>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <Container maxWidth='sm'>
+        <Stack spacing={5} direction="row"> 
+          <Button variant="outlined">Previous Day</Button>
+          <FoodList focusedDay = {focusedDay}/>
+          <Button variant="outlined">Next Day</Button>
+        </Stack>
+      </Container>
+      
+
     </div>
   );
 }
