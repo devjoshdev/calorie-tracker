@@ -1,24 +1,48 @@
 import { DataGrid } from '@mui/x-data-grid';
-// import axios from 'axios';
 import {useState} from 'react';
+import Button from '@mui/material/Button';
+
 
 function FoodList({focusedDay}) {
+  async function handleDeleteFoodItem() {
+
+    //TODO: this method currently only checks if the item is not empty when called
+    if (item === '') {
+      alert("Error: You must first select a food item to delete.")
+  
+    }
+    else {
+      alert("Ok!");
+    }
+    
+  
+  }
+  function fList(id) {
+    console.log("This has executed");
+    console.log(id);
+    const newArray = rows.filter(element => element.id === id);
+    if (newArray.length === 0) {
+      return "";
+    }
+    return newArray[0].firstName;
+  }
   const [selected, setSelected] = useState([]);
+  const [item, setItem] = useState('');
   const columns = [
-    { field: 'id', headerName: 'ID', width: 150},
-    { field: 'firstName', headerName: 'First Name', width: 150}
+    { field: 'beans', headerName: 'Food Name', width: 150},
+    { field: 'firstName', headerName: 'Calories', width: 150}
   ];
   
   const rows = [
-    { id: 1, firstName: 'Snow'},
-    { id: 2, firstName: 'Lannister'},
-    { id: 3, firstName: 'Lannister'},
-    { id: 4, firstName: 'Stark'},
-    { id: 5, firstName: 'Targaryen'},
-    { id: 6, firstName: 'Melisandre'},
-    { id: 7, firstName: 'Clifford'},
-    { id: 8, firstName: 'Frances' },
-    { id: 9, firstName: 'Roxie'},
+    {id: 'a', beans: 1, firstName: 'Snow'},
+    {id: 'b', beans: 2, firstName: 'Lannister'},
+    {id: 'c', beans: 3, firstName: 'Bannister'},
+    {id: 'd', beans: 4, firstName: 'Stark'},
+    {id: 'e', beans: 5, firstName: 'Targaryen'},
+    {id: 'f', beans: 6, firstName: 'Melisandre'},
+    {id: 'g', beans: 7, firstName: 'Clifford'},
+    {id: 'h', beans: 8, firstName: 'Frances' },
+    {id: 'i', beans: 9, firstName: 'Roxie'},
   ];
     return (
         <div>
@@ -38,18 +62,23 @@ function FoodList({focusedDay}) {
               const result = selection.filter((s) => !selectionSet.has(s));
     
               setSelected(result);
+              setItem(fList(result[0]))
             } else {
               setSelected(selection);
+              setItem(fList(selection[0]))
             }
+            
           }}
           checkboxSelection
           
         />
         </div>
           </div>
-         
-          
-        <p> Selected: {selected} </p>
+        <br></br> 
+        <Button style={{maxWidth: '250px', maxHeight: '33px', minWidth: '100px', minHeight: '33px'}} variant="contained" onClick={handleDeleteFoodItem} > Delete Selected Food Item </Button>  
+        <p> Selected ID: {selected} </p>
+        <p> Selected Item: {item} </p>
+
         </div>
        
     );

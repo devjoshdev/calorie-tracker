@@ -3,8 +3,14 @@ h1 {
 
 }
 
-h2 {
+.byMeh {
+  position: relative;
+  right: 210px;
   text-align: center;
 
+}
+
+h2 {
+  text-align: center;
 }
 
