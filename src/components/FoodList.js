@@ -28,12 +28,8 @@ function FoodList({focusedDay}) {
   }
   const [selected, setSelected] = useState([]);
   const [item, setItem] = useState('');
-  const columns = [
-    { field: 'beans', headerName: 'Food Name', width: 150},
-    { field: 'firstName', headerName: 'Calories', width: 150}
-  ];
-  
-  const rows = [
+  const columns = [{field: 'beans', headerName: 'Food Name', width: 150}, {field: 'firstName', headerName: 'Calories', width: 150}];
+  const [rows, setRows] = useState([
     {id: 'a', beans: 1, firstName: 'Snow'},
     {id: 'b', beans: 2, firstName: 'Lannister'},
     {id: 'c', beans: 3, firstName: 'Bannister'},
@@ -43,7 +39,7 @@ function FoodList({focusedDay}) {
     {id: 'g', beans: 7, firstName: 'Clifford'},
     {id: 'h', beans: 8, firstName: 'Frances' },
     {id: 'i', beans: 9, firstName: 'Roxie'},
-  ];
+  ]);
     return (
         <div>
          <h1> {focusedDay} </h1>
