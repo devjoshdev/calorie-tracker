@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 
 
-function FoodList({focusedDay}) {
+function FoodList({focusedDay, foodList}) {
   async function handleDeleteFoodItem() {
 
     //TODO: this method currently only checks if the item is not empty when called
@@ -29,17 +29,7 @@ function FoodList({focusedDay}) {
   const [selected, setSelected] = useState([]);
   const [item, setItem] = useState('');
   const columns = [{field: 'beans', headerName: 'Food Name', width: 150}, {field: 'firstName', headerName: 'Calories', width: 150}];
-  const [rows, setRows] = useState([
-    {id: 'a', beans: 1, firstName: 'Snow'},
-    {id: 'b', beans: 2, firstName: 'Lannister'},
-    {id: 'c', beans: 3, firstName: 'Bannister'},
-    {id: 'd', beans: 4, firstName: 'Stark'},
-    {id: 'e', beans: 5, firstName: 'Targaryen'},
-    {id: 'f', beans: 6, firstName: 'Melisandre'},
-    {id: 'g', beans: 7, firstName: 'Clifford'},
-    {id: 'h', beans: 8, firstName: 'Frances' },
-    {id: 'i', beans: 9, firstName: 'Roxie'},
-  ]);
+  const [rows, setRows] = useState(foodList);
     return (
         <div>
          <h1> {focusedDay} </h1>

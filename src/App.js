@@ -20,6 +20,17 @@ function App() {
   const [gender, setGender] = useState("male");
   const [height, setHeight] = useState(65);
   const [BMI, setBMI] = useState(28.5);
+  const [foodList, setFoodList] = useState([
+    {id: 'a', beans: 1, firstName: 'Snow'},
+    {id: 'b', beans: 2, firstName: 'Lannister'},
+    {id: 'c', beans: 3, firstName: 'Bannister'},
+    {id: 'd', beans: 4, firstName: 'Stark'},
+    {id: 'e', beans: 5, firstName: 'Targaryen'},
+    {id: 'f', beans: 6, firstName: 'Melisandre'},
+    {id: 'g', beans: 7, firstName: 'Clifford'},
+    {id: 'h', beans: 8, firstName: 'Frances' },
+    {id: 'i', beans: 9, firstName: 'Roxie'},
+  ]);
 
 
   return (
@@ -38,7 +49,7 @@ function App() {
       <Container maxWidth='lg'>
         <Stack spacing={8} direction="row"> 
           <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY')); console.log('e')}}>Previous Day</Button>
-          <FoodList focusedDay = {focusedDay}/>
+          <FoodList focusedDay = {focusedDay} foodList = {foodList}/>
           <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Next Day</Button>
         </Stack>
         <br></br>
