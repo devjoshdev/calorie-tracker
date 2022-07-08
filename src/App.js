@@ -1,7 +1,7 @@
 import './App.css';
 import FoodList from './components/FoodList';
 import moment from 'moment';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -20,7 +20,7 @@ function App() {
   const [gender, setGender] = useState("male");
   const [height, setHeight] = useState(65);
   const [BMI, setBMI] = useState(28.5);
-  const [foodList, setFoodList] = useState([
+  const [rows, setRows] = useState([
     {id: 'a', beans: 1, firstName: 'Snow'},
     {id: 'b', beans: 2, firstName: 'Lannister'},
     {id: 'c', beans: 3, firstName: 'Bannister'},
@@ -30,7 +30,16 @@ function App() {
     {id: 'g', beans: 7, firstName: 'Clifford'},
     {id: 'h', beans: 8, firstName: 'Frances' },
     {id: 'i', beans: 9, firstName: 'Roxie'},
+    {id : 'j', beans: 10, firstName: 'Break'}
   ]);
+
+  useEffect(() => {
+
+    console.log("Focused Day is now " + focusedDay);
+    setRows(rows.slice(0, rows.length-1));
+    console.log("Rows is now size " + rows.length + "\n" + rows);
+    
+  }, [focusedDay]);
 
 
   return (
@@ -48,9 +57,9 @@ function App() {
       <br></br>
       <Container maxWidth='lg'>
         <Stack spacing={8} direction="row"> 
-          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY')); console.log('e')}}>Previous Day</Button>
-          <FoodList focusedDay = {focusedDay} foodList = {foodList}/>
-          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Next Day</Button>
+          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.subtract(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY'));}}>Previous Day</Button>
+          <FoodList focusedDay = {focusedDay} foodList = {rows}/>
+          <Button style={{maxWidth: '100px', maxHeight: '66px', minWidth: '100px', minHeight: '66px'}} variant="contained" onClick={() => {setFocusedMoment(focusedMoment.add(1, 'days')); setFocusedDay(focusedMoment.format('MMMM Do YYYY')); console.log(rows);}}>Next Day</Button>
         </Stack>
         <br></br>
         <Stack spacing={5} direction="row">

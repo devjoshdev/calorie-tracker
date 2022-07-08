@@ -20,7 +20,7 @@ function FoodList({focusedDay, foodList}) {
   function fList(id) {
     console.log("This has executed");
     console.log(id);
-    const newArray = rows.filter(element => element.id === id);
+    const newArray = foodList.filter(element => element.id === id);
     if (newArray.length === 0) {
       return "";
     }
@@ -29,7 +29,6 @@ function FoodList({focusedDay, foodList}) {
   const [selected, setSelected] = useState([]);
   const [item, setItem] = useState('');
   const columns = [{field: 'beans', headerName: 'Food Name', width: 150}, {field: 'firstName', headerName: 'Calories', width: 150}];
-  const [rows, setRows] = useState(foodList);
     return (
         <div>
          <h1> {focusedDay} </h1>
@@ -37,7 +36,7 @@ function FoodList({focusedDay, foodList}) {
          <div style={{ height: 400, width: 600 }}>
           <div style={{ height: 400, width: 600 }}>
          <DataGrid
-          rows={rows}
+          rows={foodList}
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[10]}
