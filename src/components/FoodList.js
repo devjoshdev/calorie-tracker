@@ -3,32 +3,20 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 
 
-function FoodList({focusedDay, foodList}) {
-  async function handleDeleteFoodItem() {
+function FoodList({focusedDay, foodList, deleteFoodFn}) {
 
-    //TODO: this method currently only checks if the item is not empty when called
-    if (item === '') {
-      alert("Error: You must first select a food item to delete.")
-  
-    }
-    else {
-      alert("Ok!");
-    }
-    
-  
-  }
   function fList(id) {
-    console.log("This has executed");
-    console.log(id);
+    console.log("Selection in the list is being toggled, selected id is " + id);
     const newArray = foodList.filter(element => element.id === id);
     if (newArray.length === 0) {
       return "";
     }
-    return newArray[0].firstName;
+    return newArray[0].name;
   }
   const [selected, setSelected] = useState([]);
   const [item, setItem] = useState('');
-  const columns = [{field: 'beans', headerName: 'Food Name', width: 150}, {field: 'firstName', headerName: 'Calories', width: 150}];
+  const columns = [{field: 'name', headerName: 'Food Name', width: 150}, {field: 'calories', headerName: 'Calories', width: 150}];
+
     return (
         <div>
          <h1> {focusedDay} </h1>
@@ -60,7 +48,9 @@ function FoodList({focusedDay, foodList}) {
         </div>
           </div>
         <br></br> 
-        <Button style={{maxWidth: '250px', maxHeight: '33px', minWidth: '100px', minHeight: '33px'}} variant="contained" onClick={handleDeleteFoodItem} > Delete Selected Food Item </Button>  
+        <Button style={{maxWidth: '250px', maxHeight: '33px', minWidth: '100px', minHeight: '33px'}} variant="contained" onClick={() => {
+          deleteFoodFn(selected);
+          }} > Delete Selected Food Item </Button>  
         <p> Selected ID: {selected} </p>
         <p> Selected Item: {item} </p>
 
